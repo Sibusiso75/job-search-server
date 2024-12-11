@@ -26,6 +26,7 @@ function verifyTokenAndAuthorization(req,res,next){
         }
     })
 }
+
 function verifyAdmin(req, res, next){
     verifyToken(req,res, ()=>{
         if(req.user.isAdmin){

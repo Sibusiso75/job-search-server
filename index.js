@@ -9,6 +9,7 @@ const jobRoute = require("./routes/job")
 const articleRoute = require("./routes/article")
 const reportRoute = require("./routes/report")
 const employerRoute = require("./routes/employer/employer")
+const skillRoute = require("./routes/jobSeeker/skills")
 // const postRoute = require("./routes/post/post")
 // const commentRoute = require("./routes/post/comment")
 
@@ -37,6 +38,8 @@ app.use("/", jobRoute)
 app.use("/", articleRoute)
 app.use("/", employerRoute)
 app.use("/", reportRoute)
+app.use("/", skillRoute)
+
 // app.use("/", postRoute)
 // app.use("/", commentRoute)
 

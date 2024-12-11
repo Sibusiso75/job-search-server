@@ -40,8 +40,8 @@ const Feedback = require("../../models/JobSeeker/Feedback")
 router.post("/register", async (req, res)=>{
     try {
       
-        const {username, email, password,dateOfBirth, gender,
-          postalCode, aboutMe, province, country,town }=req.body;
+        const {username,email,password,town,province,postalCode
+        }=req.body;
     const user = await User.findOne({email})
     
           if(user){
@@ -50,9 +50,7 @@ router.post("/register", async (req, res)=>{
           const hashedPassword = await bcrypt.hash(password,10)
           
           const newUser =   new User({
-                username, email, password:hashedPassword
-                ,dateOfBirth, town,
-          postalCode, aboutMe, province, country,gender
+           username, email,password:hashedPassword,town,province,postalCode,
                 
            })
 
@@ -355,18 +353,27 @@ router.post("/reset-password/:token", async (req, res)=>{
   }
 })
 
-  router.put("/updateUser/:id", verifyAdmin, async (req, res)=>{
+  router.put("/editUser/:id", verifyTokenAndAuthorization, async (req, res)=>{
     try {
-      const {username, email, password,dateOfBirth, gender,
-        postalCode, aboutMe, province, country}=req.body;
+      const {username,email,town,postalCode,province,gender,dateOfBirth,phoneNumber,bio}=req.body;
       
-      await User.findByIdAndUpdate({_id:req.params.id},{username, email, password,dateOfBirth, gender,
-        postalCode, aboutMe, province, country,town})
+      await User.findByIdAndUpdate({_id:req.params.id},{username,email,town,postalCode,province,gender,dateOfBirth,phoneNumber,bio})
       return res.json({status:true, message:"user updated successfully"})
     } catch (error) {
       console.log(error)
     }
   })
+  router.put("/updateUser/:id", verifyAdmin, async (req, res)=>{
+    try {
+      const {username,email,town,postalCode,province,gender,dateOfBirth,phoneNumber}=req.body;
+      
+      await User.findByIdAndUpdate({_id:req.params.id},{username,email,town,postalCode,province,gender,dateOfBirth,phoneNumber})
+      return res.json({status:true, message:"user updated successfully"})
+    } catch (error) {
+      console.log(error)
+    }
+  })
+  
 
   router.delete("/deleteUser/:id", verifyAdmin, async (req, res)=>{
     const id = req.params.id;
@@ -421,7 +428,7 @@ router.get("/verify",verifyTokenAndAuthorization, async (req, res)=>{
 })
 router.get("/profile/:id", verifyTokenAndAuthorization, async (req, res)=>{
   try {
-    const user = await User.findOne({_id:req.params.id})
+    const user = await User.findOne({_id:req.user.id})
    return res.json(user)
   } catch (error) {
     return res.json(error)
