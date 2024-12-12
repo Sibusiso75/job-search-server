@@ -319,7 +319,7 @@ router.post("/forgot-password", async (req, res)=>{
       subject:"Reset password",
       html:`<p>Hi ${user.username}</p>
       <p>To reset your password, click the link below.</p>       
-      <a href="http://localhost:5173/resetPassword/${encodedToken}">
+      <a href="https://jobsearchapp-aaoq.onrender.com/resetPassword/${encodedToken}">
       Reset password link</a>
       `
     }

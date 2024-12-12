@@ -19,7 +19,7 @@ app.use(cookieParser())
 app.use(express.json())
 // https://jobsearchapp-aaoq.onrender.com
 app.use(cors({
-  origin:["http://localhost:5173"],
+  origin:["https://jobsearchapp-aaoq.onrender.com/"],
   credentials:true
 }))
 
