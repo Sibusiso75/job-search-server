@@ -44,7 +44,7 @@ router.get("/allJobs", async (req, res)=>{
          const {title,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType}=req.body;
           
      
-       await Job.findByIdAndUpdate({_id:req.params.id}, {username:req.user.username,userId:req.user.id,title,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType})
+       await Job.findByIdAndUpdate({_id:req.params.id}, {title,numberOfPeopleToHire,description,jobLocation,reside,jobUrl,province,area,jobType})
         return res.json({status:true, message:"Job post has been updated"})
      } catch (error) {
          return res.json(error)
