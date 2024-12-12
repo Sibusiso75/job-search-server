@@ -49,3 +49,6 @@ app.all("*", (request, response)=>{
 
 
 })
+app.listen(5000, ()=>{
+  console.log("Listening to port 5000")
+})
