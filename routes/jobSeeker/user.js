@@ -187,7 +187,7 @@ router.post("/login", async(req, res)=>{
         isAdmin:user.isAdmin
 
       }, process.env.KEY)
-      res.cookie("token", token, {httpOnly:true})
+      res.cookie("token", token, {httpOnly:true, sameSite:'none',secure:true})
       return res.json({status:true, message:"Successfully logged in"})
   } catch (error) {
     return res.json(error)
