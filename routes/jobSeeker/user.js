@@ -434,7 +434,7 @@ router.get("/profile/:id", verifyTokenAndAuthorization, async (req, res)=>{
     return res.json(error)
   }
 })
-router.get("/logout", async (req, res)=>{
+router.get("/logout",verifyTokenAndAuthorization, async (req, res)=>{
   try {
     res.clearCookie("token")
     res.json({status:true})
