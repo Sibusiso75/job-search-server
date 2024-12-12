@@ -19,7 +19,7 @@ app.use(cookieParser())
 app.use(express.json())
 // https://jobsearchapp-aaoq.onrender.com
 app.use(cors({
-  origin:["https://jobsearchapp-aaoq.onrender.com/"],
+  origin:["https://jobsearchapp-aaoq.onrender.com"],
   credentials:true
 }))
 
@@ -48,7 +48,4 @@ app.all("*", (request, response)=>{
   response.status(404).send("404 - Page not found")
 
 
-})
-app.listen(5000, ()=>{
-  console.log("Listening to port 5000")
 })
